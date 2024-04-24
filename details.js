@@ -1,11 +1,13 @@
-const details = document.querySelector('.details')
+(async function() {
+	const details = document.querySelector('.details')
 
-const url = new URL(window.location)
-const pokeName = url.searchParams.get('name')
+	const url = new URL(window.location)
+	const pokeName = url.searchParams.get('name')
 
-fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
-	.then(response => response.json())
-	.then(pokemon => {
+	try {
+		const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
+		const pokemon = await response.json()
+
 		const detailItem = document.createElement('div')
 		detailItem.classList.add('pokemon')
 		document.title = pokemon.name + " | Pokemon!!"
@@ -17,8 +19,8 @@ fetch(`https://pokeapi.co/api/v2/pokemon/${pokeName}`)
 			<p>Weight: ${pokemon.weight}</p>
 		`
 		details.appendChild(detailItem)
-	})
-	.catch(error => {
+	} catch (error) {
 		console.error(error)
 		details.innerHTML = `<p>Couldn't find a pokemon with the name "${pokeName}"</p>`
-	})
+	}
+})()
