@@ -7,8 +7,13 @@
 	"description": "An app to lookup pokemon names and details",
 	"icons": [
 		{
-			"src": "icon.png",
+			"src": "/icon.png",
 			"sizes": "48x48",
+			"type": "image/png"
+		},
+		{
+			"src": "/icon144.png",
+			"sizes": "any",
 			"type": "image/png"
 		}
 	]
